@@ -5,7 +5,7 @@ One row per phase. Update the **Status** column as work lands — this is the fi
 | Phase | Doc | Status | Notes |
 |---|---|---|---|
 | 0 — Environment | [phase-0-environment.md](phase-0-environment.md) | ✅ Done | Scaffold, lint/build/dev verified locally. Vercel project creation + first deploy deferred to whenever we're ready to actually launch — not blocking later phases. |
-| 1 — Foundation & data model | [phase-1-foundation-data-model.md](phase-1-foundation-data-model.md) | ⬜ Not started | Local Postgres connection confirmed working (`personal_projects` db, `alexa` schema exists) — ready to start. |
+| 1 — Foundation & data model | [phase-1-foundation-data-model.md](phase-1-foundation-data-model.md) | ✅ Done | `lib/db.js`, migration + `scripts/migrate.js`/`scripts/seed.js` added, verified against local Postgres (`personal_projects` db, `alexa` schema). Neon `DATABASE_URL` still needs to be set for staging/prod. |
 | 2 — Admin & auth | [phase-2-admin-auth.md](phase-2-admin-auth.md) | ⬜ Not started | |
 | 3 — Public site | [phase-3-public-site.md](phase-3-public-site.md) | ⬜ Not started | |
 | 4 — Referral click tracking | [phase-4-referral-click-tracking.md](phase-4-referral-click-tracking.md) | ⬜ Not started | |

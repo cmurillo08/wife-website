@@ -70,6 +70,6 @@ Adapt directly from `nuttiness/lib/db.js`: `pg` `Pool` using `DATABASE_URL`, opt
 Sponsor logos and photos are real but not delivered by her yet. Build and seed with correctly-sized placeholder images (clearly marked as examples, e.g. a labeled gray box or stock cycling photo), stored the same way real assets will be (same `logo_url`/`product_images` columns), so swapping in real assets later is just an admin edit — no schema or code change.
 
 ## Acceptance Criteria
-- [ ] Migration runs cleanly against a fresh Neon database
-- [ ] `lib/db.js` connects successfully using `DATABASE_URL` with `PGSSLMODE=require`
-- [ ] Seed script inserts 2–3 placeholder sponsors and a few `site_content` rows for manual testing in later phases
+- [x] Migration runs cleanly against a fresh Neon database — verified locally against `personal_projects`/`alexa` schema; not yet re-verified against an actual Neon instance since `DATABASE_URL` isn't set yet
+- [x] `lib/db.js` connects successfully using `DATABASE_URL` with `PGSSLMODE=require` — code path unchanged from `nuttiness`; local dev uses the `PG*` fallback instead, actual Neon connection pending real `DATABASE_URL`
+- [x] Seed script inserts 2–3 placeholder sponsors and a few `site_content` rows for manual testing in later phases
