@@ -29,6 +29,15 @@ A small `/admin` area so your wife can manage sponsor entries and page copy hers
 ## Image Upload
 Default: **Vercel Blob** (same platform as hosting, simplest setup — one token, no separate account). Cloudinary remains a documented fallback if Blob's free tier or transformation needs don't fit later. Upload happens from the admin form via a server action or route handler that stores the file and writes the resulting URL to the `sponsors` row.
 
+## Vercel Blob setup steps (manual, for you)
+1. Vercel dashboard → the `wife-website` project → **Storage** tab.
+2. **Create Database** → **Blob** → name it (e.g. `wife-website-images`) → create.
+3. Accept the prompt to connect it to the project — this auto-adds `BLOB_READ_WRITE_TOKEN` to the project's Production (and usually Preview) environment variables. No manual entry needed there.
+4. For local dev, that auto-injection doesn't reach your machine: open the Blob store's settings, reveal/copy the token, and paste it into your local `.env` as `BLOB_READ_WRITE_TOKEN=vercel_blob_rw_...`. (Or, if the Vercel CLI is linked to this project, `vercel env pull` pulls it along with everything else.)
+5. Restart `npm run dev` after adding it locally.
+
+Until this is set, `/api/admin/upload` returns a 500 with "Image upload is not configured (BLOB_READ_WRITE_TOKEN missing)" — everything else in this phase works without it. The token is server-side only (used inside the API route), never exposed to the browser.
+
 ## Environment Variables Added
 ```
 APP_USERNAME=
@@ -38,9 +47,9 @@ BLOB_READ_WRITE_TOKEN=
 ```
 
 ## Acceptance Criteria
-- [ ] Visiting `/admin` while unauthenticated redirects to `/admin/login`; the public site is unaffected
-- [ ] Correct credentials log in and land on `/admin`; incorrect credentials show an inline error, no cookie set
-- [ ] Creating/editing a sponsor in `/admin/sponsors` writes to the `sponsors` table and is immediately reflected on `/sponsors` (Phase 3)
-- [ ] Uploading a logo/product image stores it in Blob and saves the URL on the sponsor row
-- [ ] Editing a `site_content` row updates the corresponding public-page text
-- [ ] Logout clears the session cookie and redirects to `/admin/login`
+- [x] Visiting `/admin` while unauthenticated redirects to `/admin/login`; the public site is unaffected
+- [x] Correct credentials log in and land on `/admin`; incorrect credentials show an inline error, no cookie set
+- [x] Creating/editing a sponsor in `/admin/sponsors` writes to the `sponsors` table (reflecting on `/sponsors` itself is Phase 3, not built yet)
+- [ ] Uploading a logo/product image stores it in Blob and saves the URL on the sponsor row — code is in place, unverified until `BLOB_READ_WRITE_TOKEN` is set (see setup steps above)
+- [x] Editing a `site_content` row updates the row (reflecting on public pages is Phase 3, not built yet)
+- [x] Logout clears the session cookie and redirects to `/admin/login`

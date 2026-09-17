@@ -6,7 +6,7 @@ One row per phase. Update the **Status** column as work lands — this is the fi
 |---|---|---|---|
 | 0 — Environment | [phase-0-environment.md](phase-0-environment.md) | ✅ Done | Scaffold, lint/build/dev verified locally. Vercel project creation + first deploy deferred to whenever we're ready to actually launch — not blocking later phases. |
 | 1 — Foundation & data model | [phase-1-foundation-data-model.md](phase-1-foundation-data-model.md) | ✅ Done | `lib/db.js`, migration + `scripts/migrate.js`/`scripts/seed.js` added, verified against local Postgres (`personal_projects` db, `alexa` schema). Neon `DATABASE_URL` still needs to be set for staging/prod. |
-| 2 — Admin & auth | [phase-2-admin-auth.md](phase-2-admin-auth.md) | ⬜ Not started | |
+| 2 — Admin & auth | [phase-2-admin-auth.md](phase-2-admin-auth.md) | ✅ Done | Login/logout, `middleware.js` gating `/admin/**` + `/api/admin/**`, sponsor list/create/edit, site_content editor, image upload via Vercel Blob. Verified end-to-end locally (curl + browser). `BLOB_READ_WRITE_TOKEN` still needs to be set for uploads to work — everything else already works without it. |
 | 3 — Public site | [phase-3-public-site.md](phase-3-public-site.md) | ⬜ Not started | |
 | 4 — Referral click tracking | [phase-4-referral-click-tracking.md](phase-4-referral-click-tracking.md) | ⬜ Not started | |
 | 5 — Disclosures & polish | [phase-5-disclosures-polish.md](phase-5-disclosures-polish.md) | ⬜ Not started | |
